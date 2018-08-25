@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"> 
+	<welcome-file-list>
+		<welcome-file>index.jhtml</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>cn.believeus.controller.Dispatcher</servlet-class>
+	</servlet>
+	<servlet-mapping>	
+	<servlet-name>dispatcher</servlet-name>
+	<url-pattern>*.jhtml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>	
+	<servlet-name>dispatcher</servlet-name>
+	<url-pattern>/index.jhtml</url-pattern>
+	</servlet-mapping>
+	<!-- http://localhost:8080/index.jhtml-->
+	
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>cn.believeus.filter.LoginFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>FireWallFilter</filter-name>
+		<filter-class>cn.believeus.filter.FireWallFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>cn.believeus.filter.EncondingFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>FireWallFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<error-page>
+	 <error-code>404</error-code>
+	 <location>/WEB-INF/404.html</location>
+	</error-page>
+	
+	<listener>
+	<listener-class>cn.believeus.init.PoolInit</listener-class>
+	</listener>
+</web-app>
